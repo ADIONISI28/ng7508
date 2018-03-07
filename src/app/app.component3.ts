@@ -1,6 +1,5 @@
 
-import { Component } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { Component } from '@angular/core'
 @Component({
   selector: 'app-root',
   //template: `<h1> Alberto is the best 4<h1>`,
@@ -28,15 +27,6 @@ import { HttpClient} from '@angular/common/http';
 })
 
 export class AppComponent {
-  title = "Caelum Pic ";
-  creditos = "(Alberto Dionisi)";
-  listaFotos 
-  constructor(conexaoApi: HttpClient) {
-    conexaoApi.get("http://localhost:3000/v1/fotos")
-        .subscribe( fotosApi =>  this.listaFotos = fotosApi
-          // console.log(fotosApi)
-        , erro =>  console.log(erro)
-      )
-  }
-  
+  title = "Caelum Pic";
+  creditos = "(Valeu Raphael)";
 }
