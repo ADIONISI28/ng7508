@@ -17,9 +17,9 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
+      "prefix": "",
       "styles": [
-
+        "assets/fonts/icon.css",
         "../node_modules/materialize-css/dist/css/materialize.min.css",
         "styles.css"
 

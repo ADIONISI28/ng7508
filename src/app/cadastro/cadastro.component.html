@@ -1,0 +1,49 @@
+<header class="card-painel red darken-1">
+        <h1 class='center-align'>Cadastro de Fotos</h1> 
+ </header>
+    <main class='container center-align'>
+      <div class="row">
+             <div>{{foto.titulo}}<br>
+                {{foto.url}} <br>
+                {{foto.descricao}} <br>
+            </div>
+
+            <form class="col m7" (submit)="salvar($event)">
+                <div class="input-field col s12">
+                        <input (input)="foto.titulo = $event.target.value" 
+                        id="titulo" type="text" class="validate">
+                        <label for="titulo" class="active">Titulo</label>
+                 </div>
+                 <div class="input-field col s12">
+                    <input (input)="foto.url = $event.target.value" 
+                    id="url" type="text" class="validate">
+                    <label for="url" class="active">Url</label>
+                </div>
+                <div class="input-field col s12">
+                        <textarea (input)="foto.descricao = $event.target.value" 
+                        id="descricao"  class="materialize-textarea"></textarea>
+                        <label for="descricao"  class="active">Descrição</label>
+                </div>
+                 <!--   <a href="/cadastro" class="btn">Nova Foto</a>  
+                      nao usar href senao perde os recursos-->
+                <a routerLink="" class="btn grey darken-1">Voltar</a>
+                <button  class="btn">Salvar</button>
+            </form>
+            <aside class="col m5">
+                <h3>preview</h3>
+            </aside>
+         
+       
+      </div>
+      <div class="row">
+          <!--  {{ListaFotos}} -->
+          <card class="col m4" *ngFor="let foto of listaFotos" titulo = "{{foto.titulo}}">
+              <foto  url="{{foto.url}}"
+              titulo="{{foto.titulo}}"></foto>
+          </card>    
+        </div> 
+    </main>
+<footer>
+    
+</footer>
+
