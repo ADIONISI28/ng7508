@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FotoComponent } from "../foto/foto.component";
-
 
 @Component({
   selector: 'cadastro',
@@ -9,22 +8,30 @@ import { FotoComponent } from "../foto/foto.component";
   templateUrl: "./cadastro.component.html",
   styles: []
 })
-export class CadastroComponent implements OnInit {
+  export class CadastroComponent implements OnInit {
 
-  foto = new FotoComponent()  
+    foto = new FotoComponent()  
 
-  constructor(private conexaoApi: HttpClient) { }
+    constructor(private conexaoApi: HttpClient) { }
 
-  ngOnInit() {
+    ngOnInit() { }
+
+  //  salvar(evento:Event) {
+    salvar() {
+    
+      // evento.preventDefault()
+        console.log("Salvou")
+        console.log(this.foto)
+      
+
+      let cabecalho = new HttpHeaders()
+      cabecalho.append('Content-Type','application/json')
+      
+      this.conexaoApi.post('http://localhost:3000/v1/fotos',
+      this.foto, {headers: cabecalho }
+    ) 
+    .subscribe( resposta => {console.log(resposta)
+        }, erro => console.log(erro)
+      )
+    }
   }
-
-  salvar(evento:Event) 
-  
-  { evento.preventDefault()
-    console.log("Salvou")
-    console.log(this.foto)
-  }
-  /*
-  this.conexaoApi.post('http://localhost:3000/v1/fotos',this.foto)
-  */
-}
