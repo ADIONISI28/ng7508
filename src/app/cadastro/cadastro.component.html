@@ -27,27 +27,26 @@
             </form>
             <aside class="col m5">
                 <h3>preview</h3>
-                  <div>{{foto.titulo}}<br>
-                {{foto.url}} <br>
-                {{foto.descricao}} <br>
-            </div>
+                {{foto.titulo}}<br>
+                <card [titulo]="foto.titulo">
+                    <foto  [url]="foto.url"></foto> 
+                    {{foto.descricao}} <br>
+                </card>  
             </aside>
          
        
       </div>
-      <div class="row">
-          <!--  {{ListaFotos}} -->
-          <card class="col m4" *ngFor="let foto of listaFotos" titulo = "{{foto.titulo}}">
-              <foto  url="{{foto.url}}"
-              titulo="{{foto.titulo}}"></foto>
-          </card>    
-        </div> 
+    
     </main>
 <footer>
     
 </footer>
 
 <!--
+
+      <div>{{foto.titulo}}<br>
+                {{foto.url}} <br>
+                {{foto.descricao}} <br>
 
      <form class="col m7" (submit)="salvar($event)"> 
                 <div class="input-field col s12">

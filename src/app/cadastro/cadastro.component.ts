@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FotoComponent } from "../foto/foto.component";
+import { FotoService } from "../servicos/foto.service";
 
 @Component({
   selector: 'cadastro',
@@ -11,8 +12,11 @@ import { FotoComponent } from "../foto/foto.component";
   export class CadastroComponent implements OnInit {
 
     foto = new FotoComponent()  
+    servico: FotoService
 
-    constructor(private conexaoApi: HttpClient) { }
+    constructor(service: FotoService) {
+        this.servico = service     
+    }
 
     ngOnInit() { }
 
@@ -24,14 +28,12 @@ import { FotoComponent } from "../foto/foto.component";
         console.log(this.foto)
       
 
-      let cabecalho = new HttpHeaders()
-      cabecalho.append('Content-Type','application/json')
+    //  let cabecalho = new HttpHeaders()
+    //  cabecalho.append('Content-Type','application/json')
       
-      this.conexaoApi.post('http://localhost:3000/v1/fotos',
-      this.foto, {headers: cabecalho }
-    ) 
-    .subscribe( resposta => {console.log(resposta)
-        }, erro => console.log(erro)
+      this.servico.cadastrar(this.foto)  
+        .subscribe( ()=> this.foto = new FotoComponent()
+                , erro => console.log(erro)
       )
     }
   }

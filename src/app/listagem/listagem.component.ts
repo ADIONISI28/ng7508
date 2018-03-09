@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { FotoComponent } from '../foto/foto.component';
+import { FotoService } from "../servicos/foto.service";
 
 @Component({
   selector: 'listagem',
@@ -12,9 +13,10 @@ export class ListagemComponent implements OnInit {
 
   title = "Caelum Pic ";
   creditos = "(Alberto Dionisi)";
-  listaFotos 
-  constructor(conexaoApi: HttpClient) {
-    conexaoApi.get("http://localhost:3000/v1/fotos")
+  listaFotos: FotoComponent[]
+  mensagem 
+  constructor(private servico:FotoService) {
+         this.servico.listar()
         .subscribe( fotosApi =>  this.listaFotos = fotosApi
           // console.log(fotosApi)
         , erro =>  console.log(erro)
@@ -22,5 +24,21 @@ export class ListagemComponent implements OnInit {
     }
   ngOnInit() {
   }
-
+  deletar(foto:FotoComponent){
+    console.log(foto);
+    this.servico.deletar(foto).subscribe(
+         resposta =>{ console.log(resposta) 
+         console.log(`${foto.titulo} deletada com sucesso!!`)
+         // deletar matriz this.listaFoto = 
+         /* this.listaFotos.filter(function(fotoDaLista){
+            if(fotoDaLista != foto) { return fotoDaLista }
+         }) */
+         this.mensagem = `Foto ${foto.titulo} apagada com sucesso`
+         this.listaFotos=this.listaFotos.filter(fotoDaLista => fotoDaLista  !=foto )
+         setTimeout(()=>this.mensagem = '', 1000)
+         // refaz a matriz listaFotos ignorando a foto
+         }
+        ,erro => console.log(erro)
+    )
+  }
 }

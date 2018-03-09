@@ -9,9 +9,8 @@ export class FotoComponent {
       @Input() url = ""
       @Input() titulo = ""
                descricao = ""
-    
+               _id
       }
-
 
 /* data binding ==> associacao 
   template: `<img src="{{url}}" alt="{{titulo}}" class="responsive-img"> <br>
